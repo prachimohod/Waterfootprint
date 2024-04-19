@@ -1,0 +1,14 @@
+body {
+    font-size: 18px;
+    background-image: url('/Images/save water.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(0px);
+  }
+
+  
+  @media (max-width: 600px) {
+    body {
+      font-size: 16px;
+    }
+  }
