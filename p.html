@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Footprint Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #011f5a;
+        background-image: url('Images/save water.jpg');
+        background-size: cover;
+    }
+    h1{
+        color: white;
+        font-weight: 100;
+        font-style: italic;
+    }
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        color: white;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+    }
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <center><h1>Personal Water Footprint</h1></center>
+<form id="waterForm">
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br>
+
+    <label for="people">Number of people in your household:</label>
+    <input type="number" id="people" name="people" required><br>
+
+    <label for="bathTime">Average minutes spent in the shower or bath per day:</label>
+    <input type="number" id="bathTime" name="bathTime" required><br>
+
+    <label for="diet">Diet:</label><br>
+    <input type="radio" id="vegetarian" name="diet" value="vegetarian" required>
+    <label for="vegetarian">Vegetarian</label><br>
+    <input type="radio" id="nonvegetarian" name="diet" value="nonvegetarian">
+    <label for="nonvegetarian">Non-Vegetarian</label><br>
+
+    <label for="gender">Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+
+    <label for="income">Gross yearly income ($):</label>
+    <input type="number" id="income" name="income" required><br>
+
+    <button type="button" onclick="calculateWaterFootprint()">Calculate</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+    function calculateWaterFootprint() {
+        var age = parseInt(document.getElementById('age').value);
+        var people = parseInt(document.getElementById('people').value);
+        var bathTime = parseInt(document.getElementById('bathTime').value);
+        var diet = document.querySelector('input[name="diet"]:checked').value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+        var income = parseInt(document.getElementById('income').value);
+
+        // Calculate water footprint based on inputs
+        // Sample calculation (for demonstration purposes only)
+        // This is not an accurate representation of water footprint calculation
+        var waterFootprint = 0;
+
+        // Adjust based on age
+        if (age <= 18) {
+            waterFootprint += 10; // Liters per day
+        } else if (age <= 40) {
+            waterFootprint += 15;
+        } else {
+            waterFootprint += 20;
+        }
+
+        // Adjust based on number of people
+        waterFootprint *= people;
+
+        // Adjust based on bath time
+        waterFootprint += (bathTime * 2); // Assume 2 liters per minute
+
+        // Adjust based on diet
+        if (diet === 'vegetarian') {
+            waterFootprint -= 5; // Assume vegetarians consume less water
+        } else {
+            waterFootprint += 5; // Assume non-vegetarians consume more water
+        }
+
+        // Adjust based on gender
+        if (gender === 'male') {
+            waterFootprint += 5; // Assume males consume more water
+        } else {
+            waterFootprint -= 5; // Assume females consume less water
+        }
+
+        // Adjust based on income (assuming higher income leads to higher consumption)
+        waterFootprint += (income / 1000); // Add 1 liter per $1000 of income
+
+        var result = "Your estimated water footprint is approximately " + waterFootprint.toFixed(2) + " liters per day.";
+
+        document.getElementById('result').innerHTML = result;
+    }
+</script>
+
+</body>
+</html>
