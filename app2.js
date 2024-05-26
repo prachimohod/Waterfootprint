@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth'; // If you're using authentication
 
 // Initialize Firebase
+
 firebase.initializeApp({ 
     apiKey: "AIzaSyDbDy9j0kBEdc4ikxfyfE8DmeCg6vLhoLU",
     authDomain: "waterfootprint-2369b.firebaseapp.com",
